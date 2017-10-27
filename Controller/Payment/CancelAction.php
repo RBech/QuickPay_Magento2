@@ -34,6 +34,6 @@ class CancelAction extends \Magento\Framework\App\Action\Action
         $this->checkoutHelper->cancelCurrentOrder('');
         $this->checkoutHelper->restoreQuote();
 
-        $this->_redirect('checkout', ['_fragment' => 'payment']);
+        $this->_redirect('checkout');
     }
 }
