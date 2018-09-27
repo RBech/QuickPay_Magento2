@@ -92,7 +92,7 @@ class QuickPayAdapter
                 'currency' => $attributes['CURRENCY'],
             ];
 
-            $shippingAddress = $attributes['SHIPPING_ADDRESS'];
+            $shippingAddress = $attributes['SHIPPING_ADDRESS'] ?? $attributes['BILLING_ADDRESS'];
             $form['shipping_address'] = [];
             $form['shipping_address']['name'] = $shippingAddress->getFirstName() . " " . $shippingAddress->getLastName();
             $form['shipping_address']['street'] = $shippingAddress->getStreetLine1();
