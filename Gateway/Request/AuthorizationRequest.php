@@ -34,11 +34,8 @@ class AuthorizationRequest implements BuilderInterface
         $amount = $this->subjectReader->readAmount($buildSubject) * 100;
         /** @var Order $order */
         $order = $paymentDO->getOrder();
-        if ($order->getIsVirtual()) {
-            $address = $order->getBillingAddress();
-        } else {
-            $address = $order->getShippingAddress();
-        }
+
+	$address = $order->getBillingAddress();
 
         return [
             'INCREMENT_ID' => $order->getOrderIncrementId(),

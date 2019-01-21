@@ -31,7 +31,7 @@
                 <sort_order>1</sort_order>
                 <payment_methods></payment_methods>
                 <privateInfoKeys></privateInfoKeys>
-                <paymentInfoKeys>cc_type,cc_number</paymentInfoKeys>
+                <paymentInfoKeys>cc_type,cc_number,exp_month,exp_year</paymentInfoKeys>
             </quickpay>
         </payment>
     </default>
