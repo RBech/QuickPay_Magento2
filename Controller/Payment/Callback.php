@@ -107,15 +107,22 @@ class Callback extends \Magento\Framework\App\Action\Action
 
                     //Add card metadata
                     $payment = $order->getPayment();
-                    $payment->setCcType($response->metadata->brand);
-                    $payment->setCcLast4('xxxx-' . $response->metadata->last4);
-                    $payment->setCcExpMonth($response->metadata->exp_month);
-                    $payment->setCcExpYear($response->metadata->exp_year);
+		    if (isset($response->metadata->type) && $response->metadata->type === 'card') {
+                        $payment->setCcType($response->metadata->brand);
+                        $payment->setCcLast4('xxxx-' . $response->metadata->last4);
+                        $payment->setCcExpMonth($response->metadata->exp_month);
+                        $payment->setCcExpYear($response->metadata->exp_year);
 
-                    $payment->setAdditionalInformation('cc_number', 'xxxx-' . $response->metadata->last4);
-                    $payment->setAdditionalInformation('exp_month', $response->metadata->exp_month);
-                    $payment->setAdditionalInformation('exp_year', $response->metadata->exp_year);
-                    $payment->setAdditionalInformation('cc_type', $response->metadata->brand);
+                        $payment->setAdditionalInformation('cc_number', 'xxxx-' . $response->metadata->last4);
+                        $payment->setAdditionalInformation('exp_month', $response->metadata->exp_month);
+                        $payment->setAdditionalInformation('exp_year', $response->metadata->exp_year);
+                        $payment->setAdditionalInformation('cc_type', $response->metadata->brand);
+                    } else {
+                        if (isset($response->metadata->payment_method)) {
+                            $payment->setCcType($response->metadata->payment_method);
+                            $payment->setAdditionalInformation('cc_type', $response->metadata->payment_method);
+                        }
+                    }
 
                     //Add transaction fee if set
                     if ($response->fee > 0) {
