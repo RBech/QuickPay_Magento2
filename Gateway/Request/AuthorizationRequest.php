@@ -44,7 +44,7 @@ class AuthorizationRequest implements BuilderInterface
             'CURRENCY'         => $order->getCurrencyCode(),
             'EMAIL'            => $address->getEmail(),
             'BILLING_ADDRESS'  => $address,
-            'SHIPPING_ADDRESS' => $order->getShippingAddress(),
+            'SHIPPING_ADDRESS' => $order->getShippingAddress() ?: $address,
             'ITEMS'            => $order->getItems(),
         ];
     }
