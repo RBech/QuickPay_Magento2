@@ -141,7 +141,7 @@ class QuickPayAdapter
                 "amount"             => $attributes['AMOUNT'],
                 "continueurl"        => $this->url->getUrl('quickpay/payment/returnAction'),
                 "cancelurl"          => $this->url->getUrl('quickpay/payment/cancelAction'),
-                "callbackurl"        => $this->url->getUrl('quickpay/payment/callback'),
+                "callbackurl"        => $this->url->getUrl('quickpay/payment/callback', ['isAjax' => true]), //We add isAjax to counter magento 2.3 CSRF protection
                 "customer_email"     => $attributes['EMAIL'],
                 "autocapture"        => $this->scopeConfig->isSetFlag(self::AUTOCAPTURE_XML_PATH, \Magento\Store\Model\ScopeInterface::SCOPE_STORE),
                 "payment_methods"    => $this->helper->getPaymentMethods(),
