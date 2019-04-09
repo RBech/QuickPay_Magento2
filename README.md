@@ -4,7 +4,7 @@ Module QuickPay\Payment implements integration with the QuickPay payment service
 
 Currently in beta release, use at your own risk. Pull requests welcome!
 
-Coded and tested in Magento 2.1.2, compatibility with other versions has not been tested yet.
+Tested in Magento 2.1.2 - 2.3
 
 Implemented so far:
 * Authorize
